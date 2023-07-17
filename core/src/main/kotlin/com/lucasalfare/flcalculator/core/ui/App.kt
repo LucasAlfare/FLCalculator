@@ -3,6 +3,7 @@ package com.lucasalfare.flcalculator.core.ui
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -12,19 +13,21 @@ import com.lucasalfare.fllistener.setupManagers
 
 @Composable
 fun App() {
-  LaunchedEffect(Unit) {
-    setupManagers(
-      uiManager,
-      CalculatorManager()
-    )
-  }
+  MaterialTheme {
+    LaunchedEffect(Unit) {
+      setupManagers(
+        uiManager,
+        CalculatorManager()
+      )
+    }
 
-  Column {
-    Button(
-      modifier = Modifier.fillMaxSize(),
-      onClick = {}
-    ) {
-      Text("Click!")
+    Column {
+      Button(
+        modifier = Modifier.fillMaxSize(),
+        onClick = {}
+      ) {
+        Text("Click!")
+      }
     }
   }
 }

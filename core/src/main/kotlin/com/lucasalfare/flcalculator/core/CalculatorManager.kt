@@ -17,6 +17,8 @@ class CalculatorManager: EventManageable() {
   }
 
   override fun onEvent(event: Any, data: Any?, origin: Any?) {
-
+    if (event == "targetTestingEvent") {
+      println("yahoooo!!")
+    }
   }
 }
