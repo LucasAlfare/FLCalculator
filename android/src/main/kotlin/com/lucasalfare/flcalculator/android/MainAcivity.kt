@@ -11,6 +11,7 @@ class MainAcivity: AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
+      // shows up the core App composable
       App()
     }
   }

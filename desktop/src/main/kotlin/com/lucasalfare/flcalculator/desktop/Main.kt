@@ -17,6 +17,7 @@ fun main() = application {
     ),
     onCloseRequest = { this.exitApplication() }
   ) {
+    // shows up the core App composable
     App()
   }
 }
