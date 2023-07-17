@@ -1,6 +1,8 @@
 package com.lucasalfare.flcalculator.core.test
 
+import com.lucasalfare.flcalculator.core.AppEvent
 import com.lucasalfare.flcalculator.core.CalculatorManager
+import com.lucasalfare.flcalculator.core.CalculatorState
 import com.lucasalfare.fllistener.EventManageable
 import com.lucasalfare.fllistener.setupManagers
 import kotlinx.coroutines.CoroutineScope
@@ -12,7 +14,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
-internal class AuxManager: EventManageable() {
+internal class DummyManager: EventManageable() {
 
   init { initiated = true }
 
@@ -29,13 +31,13 @@ internal class AuxManager: EventManageable() {
 
 internal class GeneralTests {
 
-  private val auxManager = AuxManager()
+  private val dummyManager = DummyManager()
   private val calculatorManager = CalculatorManager()
 
   init {
     CoroutineScope(Job()).launch {
       setupManagers(
-        auxManager,
+        dummyManager,
         calculatorManager
       )
     }
@@ -43,10 +45,18 @@ internal class GeneralTests {
 
   @Test
   fun `test calculator manager event request`() {
-    val targetTestingEvent = "targetTestingEvent"
     val outContent = ByteArrayOutputStream()
     System.setOut(PrintStream(outContent))
-    auxManager.notifyListeners(targetTestingEvent)
+    dummyManager.notifyListeners(AppEvent.TestingEvent)
     assertEquals("yahoooo!!\n", outContent.toString())
+  }
+
+  @Test
+  fun `test calculator state assembling`() {
+    val inputValues = "1 + 1 - 0.085 + 789.09 / 1.9"
+    val targetState = CalculatorState()
+    inputValues.forEach {
+      targetState.handleInput("$it")
+    }
   }
 }

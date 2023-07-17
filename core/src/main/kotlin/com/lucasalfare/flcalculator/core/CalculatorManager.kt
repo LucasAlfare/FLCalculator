@@ -2,6 +2,8 @@ package com.lucasalfare.flcalculator.core
 
 import com.lucasalfare.fllistener.EventManageable
 
+
+
 class CalculatorManager: EventManageable() {
 
   init {
@@ -17,7 +19,7 @@ class CalculatorManager: EventManageable() {
   }
 
   override fun onEvent(event: Any, data: Any?, origin: Any?) {
-    if (event == "targetTestingEvent") {
+    if (event == AppEvent.TestingEvent) {
       println("yahoooo!!")
     }
   }
