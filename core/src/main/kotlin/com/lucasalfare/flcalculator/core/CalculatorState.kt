@@ -5,12 +5,15 @@ import com.lucasalfare.flcalculator.core.fsm.ParsingState
 
 class CalculatorState {
 
-  private var currState: ParsingState = NumberState()
+  var state = ""
+  private var currentParsingState: ParsingState = NumberState()
 
   fun handleInput(s: String) {
     if (s != " ") {
-      currState = currState.handleInput(s)!!
-      currState.update(s)
+      runCatching {
+        currentParsingState = currentParsingState.handleInput(s)!!
+        currentParsingState.update(s) { state += it }
+      }
     }
   }
 }

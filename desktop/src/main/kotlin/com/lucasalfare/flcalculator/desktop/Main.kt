@@ -13,7 +13,7 @@ fun main() = application {
   Window(
     state = WindowState(
       position = WindowPosition(Alignment.Center),
-      size = DpSize(200.dp, 400.dp)
+      size = DpSize(300.dp, 400.dp)
     ),
     onCloseRequest = { this.exitApplication() }
   ) {

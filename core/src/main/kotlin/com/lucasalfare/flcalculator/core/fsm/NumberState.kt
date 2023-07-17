@@ -6,45 +6,42 @@ class NumberState: ParsingState {
 
   private var currentNumber = ""
 
-  override fun handleInput(input: String): ParsingState? {
-    if (InputChecking.isOperator(input)) {
+  override fun handleInput(
+    input: String
+  ): ParsingState? {
+    return when {
+      InputChecking.isOperator(input) -> OperationState()
+      InputChecking.isAssociative(input) -> AssociativeState()
+      InputChecking.isNumeric(input) || InputChecking.isDot(input) -> this
 
-    } else if (InputChecking.isAssociative(input)) {
-
-    } else if (InputChecking.isEquality(input)) {
-
-    } else if (InputChecking.isErase(input)) {
-
-    } else if (InputChecking.isNumeric(input)) {
-      return this
+      else -> null
     }
-
-    return null
   }
 
   override fun update(
-    input: String
+    input: String,
+    onStateUpdate: (String) -> Unit
   ) {
     when (input) {
       "." -> {
         if (input !in currentNumber) {
-          currentNumber += (if (currentNumber.isEmpty()) "0." else ".")
+          val nextItem = (if (currentNumber.isEmpty()) "0." else ".")
+          currentNumber += nextItem
+          onStateUpdate(nextItem)
         }
       }
 
       "0" -> {
         if (currentNumber.isNotEmpty()) {
           currentNumber += input
+          onStateUpdate(input)
         }
       }
 
       else -> {
         currentNumber += input
+        onStateUpdate(input)
       }
     }
-  }
-
-  override fun reset() {
-
   }
 }

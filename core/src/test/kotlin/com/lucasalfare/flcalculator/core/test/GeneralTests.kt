@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.expect
 
 
 internal class DummyManager: EventManageable() {
@@ -48,15 +49,25 @@ internal class GeneralTests {
     val outContent = ByteArrayOutputStream()
     System.setOut(PrintStream(outContent))
     dummyManager.notifyListeners(AppEvent.TestingEvent)
-    assertEquals("yahoooo!!\n", outContent.toString())
+
+    assertEquals(
+      expected = "yahoooo!!\n",
+      actual = outContent.toString()
+    )
   }
 
   @Test
-  fun `test calculator state building`() {
-    val inputValues = "1 + 1 - 0.085 + -789.09 / 1.9"
+  fun `test calculator state assembling`() {
+    val input1 = "1 + 1 - 0.085 + 789.09 / 1.9 * (123.09 - 0.0017)"
     val targetState = CalculatorState()
-    inputValues.forEach {
+
+    input1.forEach {
       targetState.handleInput("$it")
     }
+
+    assertEquals(
+      expected = "1+1-0.085+789.09/1.9*(123.09-0.0017)",
+      actual = targetState.state
+    )
   }
 }
