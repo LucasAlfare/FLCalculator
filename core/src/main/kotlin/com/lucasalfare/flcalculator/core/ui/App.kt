@@ -28,12 +28,16 @@ fun App() {
       Box(
         modifier = Modifier
           .fillMaxWidth()
-          .height(60.dp)
+          .weight(1f)
           .padding(4.dp)
       ) {
         Display()
       }
-      Box(modifier = Modifier.padding(4.dp)) {
+      Box(
+        modifier = Modifier
+          .padding(4.dp)
+          .weight(3f)
+      ) {
         Pad()
       }
     }

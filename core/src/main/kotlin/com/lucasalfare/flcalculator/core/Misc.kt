@@ -11,9 +11,13 @@ class InputChecking {
 
     fun isOperator(s: String) = s in "+-*/"
 
+    fun isDot(s: String) = s == "."
+
     fun isAssociative(s: String) = s in "()[]{}"
 
-    fun isDot(s: String) = s == "."
+    fun isOpenningAssociative(s: String) = s in "([{"
+
+    fun isClosingAssociative(s: String) = s in ")]}"
 
     fun isEquality(s: String) = s == "="
 
