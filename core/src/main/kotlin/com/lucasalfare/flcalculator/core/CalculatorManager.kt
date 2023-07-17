@@ -6,7 +6,7 @@ import com.lucasalfare.fllistener.EventManageable
 
 class CalculatorManager: EventManageable() {
 
-  var currentCalculatorState = CalculatorState()
+  private var currentCalculatorState = CalculatorState()
 
   init {
     initiated = true

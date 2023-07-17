@@ -2,18 +2,25 @@ package com.lucasalfare.flcalculator.core.fsm
 
 import com.lucasalfare.flcalculator.core.InputChecking
 
-class OperationState : ParsingState {
+class ClosingAssociativeState: ParsingState {
+
+  private var nClosed = 0
 
   override fun handleInput(input: String): ParsingState? {
     return when {
-      InputChecking.isNumeric(input) || InputChecking.isDot(input) -> NumberState()
-      InputChecking.isOpenningAssociative(input) -> OpenningAssociativeState()
+      InputChecking.isClosingAssociative(input) -> {
+        //special condition to transit this to itself
+        if (nClosed + 2 == nOpenned) null else this
+      }
+
+      InputChecking.isOperator(input) -> OperationState()
 
       else -> null
     }
   }
 
   override fun update(input: String, onStateUpdate: (String) -> Unit) {
+    nClosed++
     onStateUpdate(input)
   }
 }

@@ -3,9 +3,8 @@ package com.lucasalfare.flcalculator.core
 import com.lucasalfare.flcalculator.core.fsm.NumberState
 import com.lucasalfare.flcalculator.core.fsm.ParsingState
 
-class CalculatorState {
+class CalculatorState(var state: String = "") {
 
-  var state = ""
   private var currentParsingState: ParsingState = NumberState()
 
   fun handleInput(s: String) {

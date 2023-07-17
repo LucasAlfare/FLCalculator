@@ -13,14 +13,8 @@ class InputChecking {
 
     fun isDot(s: String) = s == "."
 
-    fun isAssociative(s: String) = s in "()[]{}"
-
     fun isOpenningAssociative(s: String) = s in "([{"
 
     fun isClosingAssociative(s: String) = s in ")]}"
-
-    fun isEquality(s: String) = s == "="
-
-    fun isErase(s: String) = s == "<"
   }
 }

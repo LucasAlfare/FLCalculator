@@ -11,7 +11,7 @@ class NumberState: ParsingState {
   ): ParsingState? {
     return when {
       InputChecking.isOperator(input) -> OperationState()
-      InputChecking.isAssociative(input) -> AssociativeState() //only closing
+      InputChecking.isClosingAssociative(input) -> ClosingAssociativeState()
       InputChecking.isNumeric(input) || InputChecking.isDot(input) -> this
 
       else -> null
