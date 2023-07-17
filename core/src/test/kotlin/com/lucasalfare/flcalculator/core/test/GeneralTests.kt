@@ -53,7 +53,7 @@ internal class GeneralTests {
 
   @Test
   fun `test calculator state assembling`() {
-    val inputValues = "1 + 1 - 0.085 + 789.09 / 1.9"
+    val inputValues = "1 + 1 - 0.085 + -789.09 / 1.9"
     val targetState = CalculatorState()
     inputValues.forEach {
       targetState.handleInput("$it")
