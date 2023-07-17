@@ -1,35 +1,16 @@
 package com.lucasalfare.flcalculator.core
 
-
-enum class CalculatorStateTokenType {
-  Numeric,
-  Operation,
-  Unspecified
-}
-
-data class CalculatorStateToken(
-  var value: String = "",
-  var type: CalculatorStateTokenType = CalculatorStateTokenType.Unspecified
-)
+import com.lucasalfare.flcalculator.core.fsm.NumberState
+import com.lucasalfare.flcalculator.core.fsm.ParsingState
 
 class CalculatorState {
-  val currentCalculatorTokens = mutableListOf<CalculatorStateToken>()
 
-  private var tmpToken: CalculatorStateToken? = null
+  private var currState: ParsingState = NumberState()
 
   fun handleInput(s: String) {
     if (s != " ") {
-      tmpToken = CalculatorStateToken()
+      currState = currState.handleInput(s)!!
+      currState.update(s)
     }
   }
 }
-
-private fun isNumeric(s: String) = s in "0123456789"
-
-private fun isDot(s: String) = s == "."
-
-private fun isOperation(s: String) = s in "+-*/"
-
-private fun isAssociative(s: String) = s in "()[]{}"
-
-private fun isEquality(s: String) = s == "="
