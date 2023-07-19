@@ -18,3 +18,7 @@ class InputChecking {
     fun isClosingAssociative(s: String) = s in ")]}"
   }
 }
+
+public fun List<CalculatorToken>.customLast(): CalculatorToken {
+  return if (isEmpty()) CalculatorToken() else this[size - 1]
+}

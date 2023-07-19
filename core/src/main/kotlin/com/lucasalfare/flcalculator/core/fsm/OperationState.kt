@@ -13,7 +13,10 @@ class OperationState : ParsingState {
     }
   }
 
-  override fun update(input: String, onStateUpdate: (String) -> Unit) {
-    onStateUpdate(input)
+  override fun update(
+    input: String,
+    onStateUpdate: (String, Boolean) -> Unit
+  ) {
+    onStateUpdate(input, false)
   }
 }

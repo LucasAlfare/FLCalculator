@@ -1,6 +1,6 @@
 package com.lucasalfare.flcalculator.core
 
-import com.lucasalfare.flcalculator.core.ui.displayText
+import com.lucasalfare.flcalculator.core.ui.display
 import com.lucasalfare.fllistener.EventManageable
 
 
@@ -24,7 +24,7 @@ class CalculatorManager: EventManageable() {
     if (event == AppEvent.Input) {
       val input = data as String
       currentCalculatorState.handleInput(input)
-      displayText = currentCalculatorState.state
+      display = currentCalculatorState.toAnnotatedString()
     }
 
     if (event == AppEvent.TestingEvent) {

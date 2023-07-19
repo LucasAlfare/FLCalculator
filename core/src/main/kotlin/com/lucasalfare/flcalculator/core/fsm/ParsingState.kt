@@ -4,5 +4,5 @@ interface ParsingState {
 
   fun handleInput(input: String): ParsingState?
 
-  fun update(input: String, onStateUpdate: (String) -> Unit)
+  fun update(input: String, onStateUpdate: (String, Boolean) -> Unit)
 }

@@ -3,6 +3,7 @@ package com.lucasalfare.flcalculator.core.ui
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.buildAnnotatedString
 import com.lucasalfare.fllistener.CallbacksManager
 
 val uiManager = CallbacksManager()
@@ -15,4 +16,4 @@ val padScheme = arrayOf(
   "0", ".", "=", "+"
 )
 
-var displayText by mutableStateOf("")
+var display by mutableStateOf(buildAnnotatedString { append("0") })

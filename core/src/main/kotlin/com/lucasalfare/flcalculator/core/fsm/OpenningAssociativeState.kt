@@ -17,8 +17,11 @@ class OpenningAssociativeState: ParsingState {
     }
   }
 
-  override fun update(input: String, onStateUpdate: (String) -> Unit) {
+  override fun update(
+    input: String,
+    onStateUpdate: (String, Boolean) -> Unit
+  ) {
     nOpenned++
-    onStateUpdate(input)
+    onStateUpdate(input, false)
   }
 }

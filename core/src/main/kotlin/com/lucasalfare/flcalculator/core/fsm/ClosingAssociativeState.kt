@@ -19,8 +19,11 @@ class ClosingAssociativeState: ParsingState {
     }
   }
 
-  override fun update(input: String, onStateUpdate: (String) -> Unit) {
+  override fun update(
+    input: String,
+    onStateUpdate: (String, Boolean) -> Unit
+  ) {
     nClosed++
-    onStateUpdate(input)
+    onStateUpdate(input, false)
   }
 }

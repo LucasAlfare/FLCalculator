@@ -2,9 +2,7 @@ package com.lucasalfare.flcalculator.core.fsm
 
 import com.lucasalfare.flcalculator.core.InputChecking
 
-class NumberState: ParsingState {
-
-  private var currentNumber = ""
+class NumberState(var currentNumber: String = ""): ParsingState {
 
   override fun handleInput(
     input: String
@@ -20,27 +18,27 @@ class NumberState: ParsingState {
 
   override fun update(
     input: String,
-    onStateUpdate: (String) -> Unit
+    onStateUpdate: (String, Boolean) -> Unit
   ) {
     when (input) {
       "." -> {
         if (input !in currentNumber) {
           val nextItem = (if (currentNumber.isEmpty()) "0." else ".")
           currentNumber += nextItem
-          onStateUpdate(nextItem)
+          onStateUpdate(currentNumber, true)
         }
       }
 
       "0" -> {
         if (currentNumber.isNotEmpty()) {
           currentNumber += input
-          onStateUpdate(input)
+          onStateUpdate(currentNumber, true)
         }
       }
 
       else -> {
         currentNumber += input
-        onStateUpdate(input)
+        onStateUpdate(currentNumber, true)
       }
     }
   }
